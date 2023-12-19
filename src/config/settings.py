@@ -1,7 +1,11 @@
 """Django settings for blog project."""
 from pathlib import Path
 from typing import Any, List
+
+from dotenv import load_dotenv
 from pydantic_settings import BaseSettings
+
+load_dotenv()
 
 
 class DjangoSettings(BaseSettings):
@@ -29,6 +33,8 @@ class DjangoSettings(BaseSettings):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+
+        'main.apps.MainConfig'
     ]
 
     MIDDLEWARE: list[str] = [
@@ -88,7 +94,7 @@ class DjangoSettings(BaseSettings):
     STATICFILES_DIRS: list = [Path(BASE_DIR).joinpath('..').joinpath('static')]
 
     MEDIA_URL: str = 'media/'
-    MEDIA_ROOT: str = Path(BASE_DIR).joinpath('media').__str__()
+    MEDIA_ROOT: str = Path(BASE_DIR).joinpath('..').joinpath('media').__str__()
 
     DEFAULT_AUTO_FIELD: str = 'django.db.models.BigAutoField'
 
@@ -119,5 +125,4 @@ def __dir__() -> List[str]:
 
 def __getattr__(name: str) -> Any:
     """Turn the module access into a DjangoSettings access."""
-    a = _settings.get(name)
-    return a
+    return _settings.get(name)
