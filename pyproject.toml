@@ -7,10 +7,10 @@ readme = "README.md"
 packages = [{include = "website_happynewyear"}]
 
 [tool.poetry.dependencies]
-python = "^3.11"
-django = "^5.0"
+python = "^3.9"
+django = "4.2.8"
 pydantic-settings = "^2.1.0"
-psycopg2-binary = "^2.9.9"
+mysqlclient = "^2.2.1"
 
 
 [build-system]

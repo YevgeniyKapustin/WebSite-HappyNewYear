@@ -84,8 +84,8 @@ class DjangoSettings(BaseSettings):
     ]
 
     STATIC_URL: str = 'static/'
-    STATIC_ROOT: str = Path(BASE_DIR).joinpath('src').__str__()
-    STATICFILES_DIRS: list = [Path(BASE_DIR).joinpath('static')]
+    STATIC_ROOT: str = Path(BASE_DIR).joinpath('..').__str__()
+    STATICFILES_DIRS: list = [Path(BASE_DIR).joinpath('..').joinpath('static')]
 
     MEDIA_URL: str = 'media/'
     MEDIA_ROOT: str = Path(BASE_DIR).joinpath('media').__str__()
@@ -119,4 +119,5 @@ def __dir__() -> List[str]:
 
 def __getattr__(name: str) -> Any:
     """Turn the module access into a DjangoSettings access."""
-    return _settings[name]
+    a = _settings.get(name)
+    return a
