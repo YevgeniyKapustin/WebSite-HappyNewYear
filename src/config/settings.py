@@ -1,7 +1,5 @@
 """Django settings for blog project."""
-import os
 from pathlib import Path
-
 from typing import Any, List
 from pydantic_settings import BaseSettings
 
@@ -48,7 +46,7 @@ class DjangoSettings(BaseSettings):
     TEMPLATES: list[dict] = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [os.path.join(BASE_DIR, 'templates')],
+            'DIRS': [Path(BASE_DIR).joinpath('templates')],
             'APP_DIRS': True,
             'OPTIONS': {
                 'context_processors': [
@@ -63,12 +61,11 @@ class DjangoSettings(BaseSettings):
 
     WSGI_APPLICATION: str = 'config.wsgi.application'
 
-    DEFAULT_ENGINE: str
-    DEFAULT_NAME: str
-    DEFAULT_USER: str
-    DEFAULT_PASSWORD: str
-    DEFAULT_HOST: str
-    DEFAULT_PORT: str
+    POSTGRES_DB: str
+    POSTGRES_USER: str
+    POSTGRES_PASSWORD: str
+    POSTGRES_HOST: str
+    POSTGRES_PORT: str
     DATABASES: dict = {'default': None}
 
     AUTH_PASSWORD_VALIDATORS: list[dict] = [
@@ -87,23 +84,23 @@ class DjangoSettings(BaseSettings):
     ]
 
     STATIC_URL: str = 'static/'
-    STATIC_ROOT: str = os.path.join(BASE_DIR, 'src')
-    STATICFILES_DIRS: list = [os.path.join(BASE_DIR, 'static')]
+    STATIC_ROOT: str = Path(BASE_DIR).joinpath('src').__str__()
+    STATICFILES_DIRS: list = [Path(BASE_DIR).joinpath('static')]
 
     MEDIA_URL: str = 'media/'
-    MEDIA_ROOT: str = os.path.join(BASE_DIR, 'media')
+    MEDIA_ROOT: str = Path(BASE_DIR).joinpath('media').__str__()
 
     DEFAULT_AUTO_FIELD: str = 'django.db.models.BigAutoField'
 
     def __get_databases(self) -> dict:
         return {
             'default': {
-                'ENGINE': self.DEFAULT_ENGINE,
-                'NAME': self.DEFAULT_NAME,
-                'USER': self.DEFAULT_USER,
-                'PASSWORD': self.DEFAULT_PASSWORD,
-                'HOST': self.DEFAULT_HOST,
-                'PORT': self.DEFAULT_PORT
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': self.POSTGRES_DB,
+                'USER': self.POSTGRES_USER,
+                'PASSWORD': self.POSTGRES_PASSWORD,
+                'HOST': self.POSTGRES_HOST,
+                'PORT': self.POSTGRES_PORT
             }
         }
 
