@@ -112,7 +112,7 @@ class DjangoSettings(BaseSettings):
         env_file_encoding: str = 'utf-8'
 
 
-_settings: dict = DjangoSettings().dict()
+_settings: dict = DjangoSettings().model_dump()
 
 
 def __dir__() -> List[str]:
