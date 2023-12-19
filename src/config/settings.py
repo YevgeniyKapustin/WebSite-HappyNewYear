@@ -34,7 +34,7 @@ class DjangoSettings(BaseSettings):
         'django.contrib.messages',
         'django.contrib.staticfiles',
 
-        'main.apps.MainConfig'
+        'main'
     ]
 
     MIDDLEWARE: list[str] = [
@@ -90,11 +90,11 @@ class DjangoSettings(BaseSettings):
     ]
 
     STATIC_URL: str = 'static/'
-    STATIC_ROOT: str = Path(BASE_DIR).joinpath('..').__str__()
-    STATICFILES_DIRS: list = [Path(BASE_DIR).joinpath('..').joinpath('static')]
+    STATIC_ROOT: str = Path(BASE_DIR).joinpath('src').__str__()
+    STATICFILES_DIRS: list[str] = [Path(BASE_DIR).joinpath('static').__str__()]
 
     MEDIA_URL: str = 'media/'
-    MEDIA_ROOT: str = Path(BASE_DIR).joinpath('..').joinpath('media').__str__()
+    MEDIA_ROOT: str = Path(BASE_DIR).joinpath('media').__str__()
 
     DEFAULT_AUTO_FIELD: str = 'django.db.models.BigAutoField'
 
