@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+
+  db:
+    image: postgres:15
+    container_name: 'blog_db'
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  app:
+    build:
+      context: .
+    container_name: 'blog_app'
+    depends_on:
+      - db
+    env_file:
+      - .env
+    volumes:
+      - static:/app/src/static
+      - media:/app/src/media
+    ports:
+      - '80:80'
+
+volumes:
+  pgdata:
+  static:
+  media:
