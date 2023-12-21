@@ -2,17 +2,63 @@
 {% load static %}
 
 {% block title %}
-{{ article.title }}
-{% endblock %}
-
-{% block css_addition %}
-<link rel='stylesheet' href="{% static 'css/main.css' %}">
+{{ dog.name }}
 {% endblock %}
 
 {% block content %}
 
-{% endblock %}
+<h1 class="gy-5 ps-2 fw-bold border-dark border-5 border-start opacity-75">{{ dog.name }}</h1>
+<img src="{{ dog.main_image.url }}" class="card-img rounded d-block img-fluid" alt="">
 
-{% block script_addition %}
-<script src="{% static '/js/main.js' %}"></script>
+<div class="py-3 fs-5">{{ dog.goal }}</div>
+<div class="py-3 fs-5">{{ dog.character }}</div>
+
+<div id="carouselExampleIndicators" class="my-2 carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{ dog.image1.url }}" class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="{{ dog.image2.url }}" class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="{{ dog.image3.url }}" class="d-block w-100">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Предыдущий</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Следующий</span>
+  </button>
+</div>
+
+
+<div class="card my-2">
+  <div class="card-header">
+    Экспертное мнение
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{ dog.comment }}</p>
+      <footer class="blockquote-footer"><cite>Евгений</cite></footer>
+    </blockquote>
+  </div>
+</div>
+
+
+
+<a class="my-2 d-grid gap-2" href="{% url 'main' %}">
+  <button class="btn btn-outline-secondary" type="button">Гав!</button>
+</a>
+
+
+
 {% endblock %}

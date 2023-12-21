@@ -1,7 +1,8 @@
 from django.urls import path
 
-from .views import DogDetailView
+from .views import DogDetailView, redirect_to_random_dog
 
 urlpatterns: list[path] = [
-    path('<int:pk>/', DogDetailView.as_view(), name='main'),
+    path('', redirect_to_random_dog, name='main'),
+    path('dog?id=<int:pk>/', DogDetailView.as_view(), name='dog'),
 ]
