@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from src.main.models import Dog
+from .models import Dog
 
 
 @admin.register(Dog)

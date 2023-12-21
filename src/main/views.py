@@ -1,6 +1,6 @@
 from django.views.generic import DetailView
 
-from src.main.models import Dog
+from .models import Dog
 
 
 class DogDetailView(DetailView):
