@@ -4,7 +4,6 @@ from django.forms import FileField
 
 class Dog(models.Model):
     name: str = models.CharField(max_length=100, verbose_name='название')
-    group: str = models.CharField(max_length=100, verbose_name='группа')
     goal: str = models.TextField(verbose_name='зачем нужна?')
     character: str = models.TextField(verbose_name='характер')
     comment: str = models.TextField(verbose_name='комментарий автора')
