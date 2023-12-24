@@ -13,4 +13,4 @@ class DogDetailView(DetailView):
 
 
 def redirect_to_random_dog(request):
-    return redirect('dog', pk=randint(1, 1))
+    return redirect('dog', pk=randint(1, Dog.objects.count()))
