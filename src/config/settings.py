@@ -91,8 +91,8 @@ class DjangoSettings(BaseSettings):
     ]
 
     STATIC_URL: str = 'static/'
-    STATIC_ROOT: str = Path(BASE_DIR).joinpath('src').__str__()
-    STATICFILES_DIRS: list[str] = [Path(BASE_DIR).joinpath('static').__str__()]
+    STATIC_ROOT: str = Path(BASE_DIR).joinpath('static').__str__()
+    STATICFILES_DIRS: list[str] = []
 
     MEDIA_URL: str = 'media/'
     MEDIA_ROOT: str = Path(BASE_DIR).joinpath('media').__str__()
