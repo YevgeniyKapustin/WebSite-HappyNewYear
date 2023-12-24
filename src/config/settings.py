@@ -67,11 +67,12 @@ class DjangoSettings(BaseSettings):
 
     WSGI_APPLICATION: str = 'config.wsgi.application'
 
-    POSTGRES_DB: str
-    POSTGRES_USER: str
-    POSTGRES_PASSWORD: str
-    POSTGRES_HOST: str
-    POSTGRES_PORT: str
+    DATABASE_ENGINE: str
+    DATABASE_NAME: str
+    DATABASE_USER: str
+    DATABASE_PASSWORD: str
+    DATABASE_HOST: str
+    DATABASE_PORT: str
     DATABASES: dict = {'default': None}
 
     AUTH_PASSWORD_VALIDATORS: list[dict] = [
@@ -101,12 +102,12 @@ class DjangoSettings(BaseSettings):
     def __get_databases(self) -> dict:
         return {
             'default': {
-                'ENGINE': 'django.db.backends.postgresql',
-                'NAME': self.POSTGRES_DB,
-                'USER': self.POSTGRES_USER,
-                'PASSWORD': self.POSTGRES_PASSWORD,
-                'HOST': self.POSTGRES_HOST,
-                'PORT': self.POSTGRES_PORT
+                'ENGINE': self.DATABASE_ENGINE,
+                'NAME': self.DATABASE_NAME,
+                'USER': self.DATABASE_USER,
+                'PASSWORD': self.DATABASE_PASSWORD,
+                'HOST': self.DATABASE_HOST,
+                'PORT': self.DATABASE_PORT
             }
         }
 
